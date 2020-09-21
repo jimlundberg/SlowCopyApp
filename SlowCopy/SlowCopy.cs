@@ -70,7 +70,7 @@ namespace TransferFilesNS
             while (chr != -1);
 
             TimeSpan timeSpan = DateTime.Now - start;
-            Console.Write(" {0:hh\\:mm\\:ss\\:fff}\n\n", timeSpan);
+            Console.Write(" {0:hh\\:mm\\:ss\\:fff}\n", timeSpan);
 
             fin.Close();
             fout.Close();
