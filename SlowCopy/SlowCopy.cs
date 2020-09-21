@@ -15,7 +15,6 @@ namespace TransferFilesNS
         public static double TransferRate(long fileSize, double bitsPerSecond)
         {
             double byteRate = bitsPerSecond / 8;
-            double timeNeeded = 0;
 
             // Time needed in seconds
             if (fileSize < 100000)
