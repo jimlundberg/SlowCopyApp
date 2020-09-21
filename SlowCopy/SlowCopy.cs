@@ -15,15 +15,20 @@ namespace TransferFilesNS
         public static double TransferRate(long fileSize, double bitsPerSecond)
         {
             double byteRate = bitsPerSecond / 8;
+            double timeNeeded = 0;
 
             // Time needed in seconds
-            double timeNeeded = (fileSize / byteRate) / fileSize;
+            if (fileSize < 100000)
+            {
+                timeNeeded = fileSize / byteRate * 10;
+            }
+            else
+            {
+                timeNeeded = fileSize / byteRate / 10;
+            }
 
-            // Convert the time needed in microSeconds
-            double microSeconds = timeNeeded * 1000.0;
-
-            // Return transfer time
-            return microSeconds;
+            // Return time needed
+            return timeNeeded;
         }
 
         /// <summary>
@@ -47,7 +52,7 @@ namespace TransferFilesNS
             FileStream fout = new FileStream(targetFile, FileMode.Create);
 
             int chr;
-            int bitsPerSecond = 25;
+            int bitsPerSecond = 1000;
             long fileSize = fin.Length;
             double transferRate = TransferRate(fileSize, bitsPerSecond);
             DateTime start = DateTime.Now;
@@ -88,8 +93,10 @@ namespace TransferFilesNS
             }
             else 
             {
-                sourceFile = @"C:\SSMCharacterizationHandler\Test\1185840_202003250942\1185840_202003250942_mode0.csv";
-                outputFile = @"C:\SSMCharacterizationHandler\Input Buffer\1185840_202003250942\1185840_202003250942_mode0.csv";
+                //sourceFile = @"C:\SSMCharacterizationHandler\Test\1185840_202003250942\1185840_202003250942_mode0.csv";
+                //outputFile = @"C:\SSMCharacterizationHandler\Input Buffer\1185840_202003250942\1185840_202003250942_mode0.csv";
+                sourceFile = @"C:\SSMCharacterizationHandler\Test\1185840_202003250942\75300037D00.xml";
+                outputFile = @"C:\SSMCharacterizationHandler\Input Buffer\1185840_202003250942\75300037D00.xml";
             }
 
             TransferFiles(sourceFile, outputFile);
