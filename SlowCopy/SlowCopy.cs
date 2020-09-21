@@ -47,7 +47,7 @@ namespace TransferFilesNS
             FileStream fout = new FileStream(targetFile, FileMode.Create);
 
             int chr;
-            int bitsPerSecond = 1000;
+            int bitsPerSecond = 100;
             long fileSize = fin.Length;
             double transferRate = TransferRate(fileSize, bitsPerSecond);
             DateTime start = DateTime.Now;
@@ -70,7 +70,7 @@ namespace TransferFilesNS
             while (chr != -1);
 
             TimeSpan timeSpan = DateTime.Now - start;
-            Console.Write(" {0:hh\\:mm\\:ss\\:fff}\n", timeSpan);
+            Console.Write(" {0:ss\\:fff}\n", timeSpan);
 
             fin.Close();
             fout.Close();
