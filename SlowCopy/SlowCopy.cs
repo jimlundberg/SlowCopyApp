@@ -24,11 +24,11 @@ namespace TransferFilesNS
             }
             else if (fileSize > 5000000)
             {
-                timeNeeded = fileSize / byteRate / 250;
+                timeNeeded = fileSize / byteRate / 75;
             }
             else
             {
-                timeNeeded = fileSize / byteRate / 10;
+                timeNeeded = fileSize / byteRate / 20;
             }
 
             // Return time needed
