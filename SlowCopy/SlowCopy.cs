@@ -20,7 +20,11 @@ namespace TransferFilesNS
             // Time needed in seconds
             if (fileSize < 100000)
             {
-                timeNeeded = fileSize / byteRate * 10;
+                timeNeeded = fileSize / byteRate * 2500;
+            }
+            else if (fileSize > 5000000)
+            {
+                timeNeeded = fileSize / byteRate / 250;
             }
             else
             {
@@ -75,7 +79,7 @@ namespace TransferFilesNS
             while (chr != -1);
 
             TimeSpan timeSpan = DateTime.Now - start;
-            Console.Write(" {0:ss\\:fff}\n", timeSpan);
+            Console.Write(" {0:ss\\:fff} sec\n", timeSpan);
 
             fin.Close();
             fout.Close();
