@@ -33,9 +33,20 @@ namespace TransferFilesNS
         /// <param name="targetFile"></param>
         public static void TransferFiles(string sourceFile, string targetFile)
         {
-            int chr;
+            // Create input file stream
             FileStream fin = new FileStream(sourceFile, FileMode.Open);
+
+            // Create target directory if if does not exist
+            string targetDirectory = targetFile.Substring(0, targetFile.LastIndexOf(@"\"));
+            if (Directory.Exists(targetDirectory) == false)
+            {
+                Directory.CreateDirectory(targetDirectory);
+            }
+
+            // Create output file stream
             FileStream fout = new FileStream(targetFile, FileMode.Create);
+
+            int chr;
             int bitsPerSecond = 7;  // works imperically
             int fileSize = sourceFile.Length;
             int transferRate = TransferRate(fileSize, bitsPerSecond);
