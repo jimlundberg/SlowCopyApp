@@ -47,12 +47,12 @@ namespace TransferFilesNS
             FileStream fout = new FileStream(targetFile, FileMode.Create);
 
             int chr;
-            int bitsPerSecond = 7;  // works imperically
+            int bitsPerSecond = 8;  // works imperically
             int fileSize = sourceFile.Length;
             int transferRate = TransferRate(fileSize, bitsPerSecond);
             DateTime start = DateTime.Now;
 
-            Console.Write(string.Format("Copying {0} -> {1} ", sourceFile, targetFile));
+            Console.Write(string.Format("{0} -> {1} ", sourceFile, targetFile));
 
             do
             {
@@ -70,7 +70,7 @@ namespace TransferFilesNS
             while (chr != -1);
 
             TimeSpan timeSpan = DateTime.Now - start;
-            Console.Write("Complete taking {0:hh\\:mm\\:ss}\n\n", timeSpan);
+            Console.Write(" {0:hh\\:mm\\:ss\\:fff}\n\n", timeSpan);
 
             fin.Close();
             fout.Close();
