@@ -36,7 +36,7 @@ namespace TransferFilesNS
             int chr;
             FileStream fin = new FileStream(sourceFile, FileMode.Open);
             FileStream fout = new FileStream(targetFile, FileMode.Create);
-            int bitsPerSecond = 7;
+            int bitsPerSecond = 7;  // works imperically
             int fileSize = sourceFile.Length;
             int transferRate = TransferRate(fileSize, bitsPerSecond);
             DateTime start = DateTime.Now;
