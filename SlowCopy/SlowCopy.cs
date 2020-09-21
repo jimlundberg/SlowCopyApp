@@ -12,18 +12,18 @@ namespace TransferFilesNS
         /// <param name="fileSize"></param>
         /// <param name="bitsPerSecond"></param>
         /// <returns></returns>
-        public static int TransferRate(long fileSize, float bitsPerSecond)
+        public static double TransferRate(long fileSize, double bitsPerSecond)
         {
-            float byteRate = bitsPerSecond / 8;
+            double byteRate = bitsPerSecond / 8;
 
             // Time needed in seconds
-            float timeNeeded = fileSize / byteRate;
+            double timeNeeded = fileSize / byteRate;
 
-            // Convert the time needed in milliseconds
-            int ms = (int)(timeNeeded * 1000);
+            // Convert the time needed in microSeconds
+            double microSeconds = timeNeeded / 1000.0;
 
             // Return transfer time
-            return ms;
+            return microSeconds;
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace TransferFilesNS
             FileStream fout = new FileStream(targetFile, FileMode.Create);
 
             int chr;
-            int bitsPerSecond = 8;  // works imperically
-            int fileSize = sourceFile.Length;
-            int transferRate = TransferRate(fileSize, bitsPerSecond);
+            int bitsPerSecond = 1000;
+            long fileSize = fin.Length;
+            double transferRate = TransferRate(fileSize, bitsPerSecond);
             DateTime start = DateTime.Now;
 
             Console.Write(string.Format("{0} -> {1} ", sourceFile, targetFile));
@@ -64,7 +64,7 @@ namespace TransferFilesNS
                     fout.WriteByte((byte)chr);
 
                     // Slow the writing
-                    for (int i = 0; i < transferRate; i++);
+                    for (int i = 0; i < (int)transferRate; i++);
                 }
             }
             while (chr != -1);
@@ -88,8 +88,8 @@ namespace TransferFilesNS
             }
             else 
             {
-                sourceFile = @"C:\SSMCharacterizationHandler\Test\1185840_202003250942\75300037D00.xml";
-                outputFile = @"C:\SSMCharacterizationHandler\Input Buffer\1185840_202003250942\75300037D00.xml";
+                sourceFile = @"C:\SSMCharacterizationHandler\Test\1185840_202003250942\1185840_202003250942_mode0.csv";
+                outputFile = @"C:\SSMCharacterizationHandler\Input Buffer\1185840_202003250942\1185840_202003250942_mode0.csv";
             }
 
             TransferFiles(sourceFile, outputFile);
