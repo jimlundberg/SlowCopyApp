@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 
-namespace TransferFilesNS
+namespace Program
 {
     class SlowCopy
     {
@@ -15,6 +14,7 @@ namespace TransferFilesNS
         public static double TransferRate(long fileSize, double bitsPerSecond)
         {
             double byteRate = bitsPerSecond / 8;
+            double timeNeeded;
 
             // Time needed in seconds
             if (fileSize < 100000)
@@ -84,6 +84,10 @@ namespace TransferFilesNS
             fout.Close();
         }
 
+        /// <summary>
+        /// Main startup
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             string sourceFile;
