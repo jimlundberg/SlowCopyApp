@@ -17,10 +17,10 @@ namespace TransferFilesNS
             double byteRate = bitsPerSecond / 8;
 
             // Time needed in seconds
-            double timeNeeded = fileSize / byteRate;
+            double timeNeeded = (fileSize / byteRate) / fileSize;
 
             // Convert the time needed in microSeconds
-            double microSeconds = timeNeeded / 1000.0;
+            double microSeconds = timeNeeded * 1000.0;
 
             // Return transfer time
             return microSeconds;
@@ -47,7 +47,7 @@ namespace TransferFilesNS
             FileStream fout = new FileStream(targetFile, FileMode.Create);
 
             int chr;
-            int bitsPerSecond = 100;
+            int bitsPerSecond = 25;
             long fileSize = fin.Length;
             double transferRate = TransferRate(fileSize, bitsPerSecond);
             DateTime start = DateTime.Now;
