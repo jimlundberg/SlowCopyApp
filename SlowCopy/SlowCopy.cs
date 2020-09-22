@@ -60,7 +60,7 @@ namespace Program
             double transferRate = TransferRate(fileSize, bitsPerSecond);
             DateTime start = DateTime.Now;
 
-            Console.Write(string.Format("{0} -> {1} ", sourceFile, targetFile));
+            Console.Write(string.Format("{0} -> {1}", sourceFile, targetFile));
 
             do
             {
